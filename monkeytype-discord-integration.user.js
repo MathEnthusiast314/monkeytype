@@ -19,7 +19,10 @@ function after(){
             var p=JSON.parse(arguments[0]);
             if (typeof(p)=='object'){
                 if(Object.keys(p).includes('result')){
-                    var emitdata={setText:[`${p.result.mode} ${p.result.mode2} | ${p.result.language}${p.result.punctuation?" | punctuation":""}${p.result.numbers?" | numbers":""}`],setAuthor:[document.getElementsByClassName('view-account')[0].children[2].textContent, 'https://cdn.discordapp.com/embed/avatars/0.png', 'https://monkeytype.com/profile/'+p.result.uid],
+                    var name=document.getElementsByClassName('view-account')[0].children[2].textContent;
+                    var nameNum=0;
+                    for (var char of name){nameNum+=char.charCodeAt(0)}
+                    var emitdata={setText:[`${p.result.mode} ${p.result.mode2} | ${p.result.language}${p.result.punctuation?" | punctuation":""}${p.result.numbers?" | numbers":""}`],setAuthor:[name, `https://cdn.discordapp.com/embed/avatars/${nameNum%6}.png`, 'https://monkeytype.com/profile/'+p.result.uid],
                                    setTitle:[p.result.wpm+' wpm'],setURL:['https://monkeytype.com'],
                                    addField:[['Raw wpm',`\`\`\`ansi\n[0;34m${p.result.rawWpm} wpm\`\`\``, true],['Accuracy',`\`\`\`ansi\n[0;36m${p.result.acc}%\`\`\``, true],['Time ⌚️',`\`\`\`ansi\n[0;32m${p.result.testDuration}s\`\`\``, true],
                                              ['Consistency',`\`\`\`ansi\n[0;36m${p.result.consistency}%[0m ([0;36m${p.result.keyConsistency}%[0m key)\`\`\``, true],['Wpm Consistency',`\`\`\`ansi\n[0;34m${p.result.wpmConsistency} wpm\`\`\``, true],
