@@ -4,7 +4,7 @@
 // @grant       none
 // @version     1.0
 // @author      MathEnthusiast314
-// @match       https://monkeytype.com
+// @match       https://monkeytype.com/*
 // @description Posts monkeytype test stats to discord as a webhook
 // @require     https://statswebhook.glitch.me/socket.io/socket.io.min.js
 // @downloadURL https://github.com/MathEnthusiast314/monkeytype/raw/main/monkeytype-discord-integration.user.js
