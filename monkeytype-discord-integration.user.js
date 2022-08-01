@@ -28,7 +28,16 @@ function after(){
                                              ['Consistency',`\`\`\`ansi\n[0;36m${p.result.consistency}%[0m ([0;36m${p.result.keyConsistency}%[0m key)\`\`\``, true],['Wpm Consistency',`\`\`\`ansi\n[0;34m${p.result.wpmConsistency} wpm\`\`\``, true],
                                              ['Characters\n(correct / incorrect / extra / missed)',`\`\`\`ansi\n[0;32m${p.result.charStats[0]}[0;37m / [0;31m${p.result.charStats[1]}[0;37m / [0;33m${p.result.charStats[2]}[0;37m / [0;35m${p.result.charStats[3]}\`\`\``, false]],
                                    setTimestamp:p.result.timestamp}
-                    socket.emit("log",[emitdata,'monkeytypeme314server'])
+                    
+                    var pointer = this
+                    var intervalId = window.setInterval(function(){
+                        if(pointer.readyState != 4){
+                            return;
+                        }
+                        JSON.parse(pointer.responseText).data.isPb?emitdata.setFooter=['Personal Best!', 'https://i.imgur.com/rY8b7Ja.png']:0;
+                        socket.emit("log",[emitdata,'monkeytypeme314server'])
+                        clearInterval(intervalId);
+                    }, 1);
                 }
             }
         }
