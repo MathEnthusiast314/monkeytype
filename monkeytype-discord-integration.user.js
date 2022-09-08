@@ -19,7 +19,7 @@ function after(){
             var p=JSON.parse(arguments[0]);
             if (typeof(p)=='object'){
                 if(Object.keys(p).includes('result')){
-                    var name=document.getElementsByClassName('view-account')[0].children[2].textContent;
+                    var name=`${document.getElementsByClassName('view-account')[0].children[3].textContent} (${document.getElementsByClassName('view-account')[0].children[4].textContent})`;
                     var nameNum=0;
                     for (var char of name){nameNum+=char.charCodeAt(0)}
                     var emitdata={setText:[`${p.result.mode} ${p.result.mode2} | ${p.result.language}${p.result.punctuation?" | punctuation":""}${p.result.numbers?" | numbers":""}`],setAuthor:[name, `https://cdn.discordapp.com/embed/avatars/${nameNum%6}.png`, 'https://monkeytype.com/profile/'+p.result.uid],
